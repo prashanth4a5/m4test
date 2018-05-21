@@ -28,7 +28,7 @@
 				<configuration>
 				   			     <cloudHubDeployment>
     			        <uri>https://anypoint.mulesoft.com</uri>
-   				         <muleVersion>4.1</muleVersion>
+   				         <muleVersion>4.1.1</muleVersion>
    				         <username>mulefour</username>
     			        <password>Mulefour4</password>
     			        <applicationName>testvm</applicationName>
