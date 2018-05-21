@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6c6fa517-e77e-4d50-87cd-1afc2c15b9e4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<vm:config name="VM_Config" doc:name="VM Config" doc:id="81e23549-3ee3-4017-9fc6-1c55f2095fd8" >
+		<vm:queues >
+			<vm:queue queueName="vmq" />
+		</vm:queues>
+	</vm:config>
+	<flow name="test2vmFlow" doc:id="341f57ca-6b85-4404-9541-c8e4471771b8" >
+		<http:listener doc:name="Listener" doc:id="9854ba81-c66d-4e14-bd70-5384feb3f145" config-ref="HTTP_Listener_config" path="/t"/>
+		<set-payload value="hello" doc:name="Set Payload" doc:id="f05205b3-202d-4820-a4ef-d9bde042087e" />
+		<logger level="INFO" doc:name="Logger" doc:id="4e6b9974-d76a-44f1-b551-155d4cc085a7" message="#[payload]"/>
+		<vm:publish doc:name="Publish" doc:id="dbd323bd-fda2-494d-a254-44d83980ff24" config-ref="VM_Config" queueName="vmq"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6ea7fa5b-14a3-44f1-8210-575c464e4608" message="#[payload]"/>
+	</flow>
+	<flow name="test2vmFlow1" doc:id="a1962baa-e51b-48a5-93d2-c4b8e5ebbf11" >
+		<vm:listener queueName="vmq" doc:name="Listener" doc:id="5aab2d3f-01e2-4eb9-95db-1f2c4f21ec61" config-ref="VM_Config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a712df75-8087-4756-96a0-020059a419dc" message="#[payload]"/>
+	</flow>
+</mule>
