@@ -32,7 +32,7 @@
    				         <username>mulefour</username>
     			        <password>Mulefour4</password>
     			        <applicationName>testvm</applicationName>
-    			        <environment>sandbox</environment>
+    			        <environment>Sandbox</environment>
             <properties>
                 <key>value</key>
             </properties>
