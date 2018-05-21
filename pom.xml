@@ -24,7 +24,19 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				
 				<configuration>
+				   			     <cloudHubDeployment>
+    			        <uri>https://anypoint.mulesoft.com</uri>
+   				         <muleVersion>4.1</muleVersion>
+   				         <username>mulefour</username>
+    			        <password>Mulefour4</password>
+    			        <applicationName>testvm</applicationName>
+    			        <environment>sandbox</environment>
+            <properties>
+                <key>value</key>
+            </properties>
+        </cloudHubDeployment>
 				</configuration>
 			</plugin>
 		</plugins>
