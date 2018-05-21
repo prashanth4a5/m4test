@@ -31,7 +31,7 @@
    				         <muleVersion>4.1.1</muleVersion>
    				         <username>mulefour</username>
     			        <password>Mulefour4</password>
-    			        <applicationName>testvm</applicationName>
+    			        <applicationName>testvm2</applicationName>
     			        <environment>Sandbox</environment>
             <properties>
                 <key>value</key>
