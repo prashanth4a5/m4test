@@ -32,7 +32,6 @@ pipeline {
     stage('build-parent-pom-master') {
       when {
         branch 'master'
-        echo "${BUILD_ID}"
         }
       steps {
         build(job: 'ppom/master', propagate: true, wait: true)
