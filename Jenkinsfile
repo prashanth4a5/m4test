@@ -18,7 +18,7 @@ pipeline {
         expression { DEPLOY_TO ==  'TEST' }
       }
       steps {
-      ech ' Hi test'
+      echo ' Hi test'
        }
     }
     stage('Deploying to UAT') {
