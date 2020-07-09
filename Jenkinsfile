@@ -44,7 +44,7 @@ pipeline {
       when {
         
         anyOf {
-           expression { env.BRANCH_NAME == 'master' }
+           expression { env.BRANCH_NAME == 'master' &&  DEPLOY_TO !=  'UAT' &&  DEPLOY_TO !=  'PROD'}
           expression {  DEPLOY_TO ==  'TEST' }
         }
       }
