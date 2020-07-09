@@ -43,13 +43,17 @@ pipeline {
     stage('Deploying to TEST') {
       when {
        
-        anyOf {
+        allOf {
            expression { env.BRANCH_NAME == 'master'}
           expression {  DEPLOY_TO ==  'TEST' }
         }
           not {
         expression {  DEPLOY_TO ==  'UAT' }
-            expression {  DEPLOY_TO ==  'PROD' }
+           
+        }
+          not {
+        expression {  DEPLOY_TO ==  'PROD' }
+           
         }
       }
       steps {
