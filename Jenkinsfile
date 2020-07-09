@@ -36,10 +36,7 @@ pipeline {
        
         }
       steps {
-        script {
-                    env.TEST_VARIABLE = "some test value"
-                }
-        echo "TEST_VARIABLE = ${env.TEST_VARIABLE}"
+       
         echo "The build number is ${env.BUILD_NUMBER}"
         build(job: 'ppom/master', propagate: true, wait: true)
       }
@@ -47,7 +44,7 @@ pipeline {
     stage('Deploying to TEST') {
       when {
         branch 'master'
-        expression { env.BUILD_NUMBER !=  1 || DEPLOY_TO ==  'TEST' }
+        expression { env.BUILD_NUMBER !=  0 || DEPLOY_TO ==  'TEST' }
       }
       steps {
         echo 'Hi TEST'
