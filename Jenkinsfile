@@ -32,6 +32,7 @@ pipeline {
     stage('build-parent-pom-master') {
       when {
         branch 'master'
+        echo BUILD_ID
         }
       steps {
         build(job: 'ppom/master', propagate: true, wait: true)
@@ -40,7 +41,7 @@ pipeline {
     stage('Deploying to TEST') {
       when {
         branch 'master'
-        expression { DEPLOY_TO ==  '' || DEPLOY_TO ==  'TEST' }
+        expression { BUILD_ID ==  '' || DEPLOY_TO ==  'TEST' }
       }
       steps {
         echo 'Hi TEST'
