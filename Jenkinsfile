@@ -42,9 +42,12 @@ pipeline {
     }
     stage('Deploying to TEST') {
       when {
-        
+         not {
+        expression {  DEPLOY_TO ==  'UAT' }
+            expression {  DEPLOY_TO ==  'PROD' }
+        }
         anyOf {
-           expression { env.BRANCH_NAME == 'master' &&  DEPLOY_TO !=  'UAT' &&  DEPLOY_TO !=  'PROD'}
+           expression { env.BRANCH_NAME == 'master'}
           expression {  DEPLOY_TO ==  'TEST' }
         }
       }
