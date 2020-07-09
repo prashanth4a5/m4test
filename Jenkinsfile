@@ -45,7 +45,7 @@ pipeline {
         
         anyOf {
            expression { env.BRANCH_NAME == 'master' }
-          expression { env.BRANCH_NAME != 'master' && DEPLOY_TO ==  'TEST' }
+          expression {  DEPLOY_TO ==  'TEST' }
         }
       }
       steps {
