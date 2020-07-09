@@ -33,16 +33,21 @@ pipeline {
     stage('build-parent-pom-master') {
       when {
         branch 'master'
-        echo "bn ${env.BUILD_NUMBER}"
+       
         }
       steps {
+        script {
+                    env.TEST_VARIABLE = "some test value"
+                }
+        echo "TEST_VARIABLE = ${env.TEST_VARIABLE}"
+        echo "The build number is ${env.BUILD_NUMBER}"
         build(job: 'ppom/master', propagate: true, wait: true)
       }
     }
     stage('Deploying to TEST') {
       when {
         branch 'master'
-        expression { BUILD_NUMBER !=  1 || DEPLOY_TO ==  'TEST' }
+        expression { env.BUILD_NUMBER !=  1 || DEPLOY_TO ==  'TEST' }
       }
       steps {
         echo 'Hi TEST'
