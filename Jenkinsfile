@@ -12,8 +12,9 @@ pipeline {
         }
       }
       steps {
-        echo 'Hi BUILD'
-        echo DEPLOY_TO
+        echo 'Hi DEV BUILD'
+        echo "The build number is ${env.BUILD_NUMBER}"
+        echo "The BRANCH_NAME  is ${env.BRANCH_NAME}"
         build(job: 'ppom/dev', propagate: true, wait: true)
       }
     }
@@ -21,10 +22,7 @@ pipeline {
       when {
         not {
         branch 'master'
-       
         }
-        
-         expression {DEPLOY_TO ==  null || DEPLOY_TO ==  'DEV' }
       }
       steps {
       echo 'Hi DEV'
@@ -36,15 +34,19 @@ pipeline {
        
         }
       steps {
-       
+       echo 'Hi MASTER BUILD'
         echo "The build number is ${env.BUILD_NUMBER}"
+        echo "The BRANCH_NAME  is ${env.BRANCH_NAME}"
         build(job: 'ppom/master', propagate: true, wait: true)
       }
     }
     stage('Deploying to TEST') {
       when {
-        branch 'master'
-        expression { env.BUILD_NUMBER !=  0 || DEPLOY_TO ==  'TEST' }
+        
+        anyOf {
+           expression { env.BRANCH_NAME == 'master' }
+          expression { env.BRANCH_NAME != 'master' && DEPLOY_TO ==  'TEST' }
+        }
       }
       steps {
         echo 'Hi TEST'
