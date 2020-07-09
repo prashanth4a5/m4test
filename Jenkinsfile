@@ -40,7 +40,7 @@ pipeline {
     stage('Deploying to TEST') {
       when {
         branch 'master'
-        expression { DEPLOY_TO ==  null || DEPLOY_TO ==  'TEST' }
+        expression { DEPLOY_TO ==  '' || DEPLOY_TO ==  'TEST' }
       }
       steps {
         echo 'Hi TEST'
