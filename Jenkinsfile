@@ -2,6 +2,7 @@ pipeline {
   agent any
  parameters {
   choice choices: ['DEV','TEST', 'UAT', 'PROD'], description: 'Select the Environment to Deploy ', name: 'DEPLOY_TO'
+   
 }
   stages {
     stage('build-parent-pom-dev') {
@@ -32,6 +33,7 @@ pipeline {
     stage('build-parent-pom-master') {
       when {
         branch 'master'
+        echo "bn ${env.BUILD_NUMBER}"
         }
       steps {
         build(job: 'ppom/master', propagate: true, wait: true)
@@ -40,7 +42,7 @@ pipeline {
     stage('Deploying to TEST') {
       when {
         branch 'master'
-        expression { BUILD_ID ==  '' || DEPLOY_TO ==  'TEST' }
+        expression { BUILD_NUMBER !=  1 || DEPLOY_TO ==  'TEST' }
       }
       steps {
         echo 'Hi TEST'
