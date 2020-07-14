@@ -1,82 +1,24 @@
 pipeline {
-  agent any
- parameters {
-  choice choices: ['DEV','TEST', 'UAT', 'PROD'], description: 'Select the Environment to Deploy ', name: 'DEPLOY_TO'
-   
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                script{
+                    def response = httpRequest customHeaders: [[name: 'Authorization', value: 'Basic YXVzbnN3MTA6QXVzbnN3MTA=']], url: 'https://maven.anypoint.mulesoft.com/api/v1/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven/20db3a05-030a-4002-8df3-0188ff228246/t2/maven-metadata.xml'
+                   
+println(response.content);
+def list =  new XmlParser().parseText(response.content)
+println('**');
+def vers = list.value()[2].value()[0].value()[0]
+new_ver= (vers.substring(0,vers.lastIndexOf(".")+1) + (Integer.parseInt(vers.substring(vers.lastIndexOf(".")+1)) + 1))
+println('**');
+
+
 }
-  stages {
-    stage('build-parent-pom-dev') {
-      when {
-        not {
-        branch 'master'
-        }
-      }
-      steps {
-        echo 'Hi DEV BUILD'
-        echo "The build number is ${env.BUILD_NUMBER}"
-        echo "The BRANCH_NAME  is ${env.BRANCH_NAME}"
-        build(job: 'ppom/dev', propagate: true, wait: true)
-      }
-    }
-    stage('Deploying to DEV') {
-      when {
-        not {
-        branch 'master'
-        }
-      }
-      steps {
-      echo 'Hi DEV'
-       }
-    }
-    stage('build-parent-pom-master') {
-      when {
-        branch 'master'
-       
-        }
-      steps {
-       echo 'Hi MASTER BUILD'
-        echo "The build number is ${env.BUILD_NUMBER}"
-        echo "The BRANCH_NAME  is ${env.BRANCH_NAME}"
-        build(job: 'ppom/master', propagate: true, wait: true)
-      }
-    }
-    stage('Deploying to TEST') {
-      when {
-       
-        allOf {
-           expression { env.BRANCH_NAME == 'master'}
-          expression {  DEPLOY_TO ==  'TEST' }
-        }
-          not {
-        expression {  DEPLOY_TO ==  'UAT' }
-           
-        }
-          not {
-        expression {  DEPLOY_TO ==  'PROD' }
-           
-        }
-      }
-      steps {
-        echo 'Hi TEST'
+echo "${new_ver}"
+                }
+               
+            }
         }
     }
-   stage('Deploying to UAT') {
-      when {
-        branch 'master'
-        expression { DEPLOY_TO ==  'UAT' }
-      }
-      steps {
-        echo 'Hi UAT'
-        }
-    }
-  }
-  options {
-    timeout(time: 1, unit: 'HOURS')
-  }
-  post {
-        always {
-            echo 'I will always say Hello again!'
-           
-        }
-  }
-}
