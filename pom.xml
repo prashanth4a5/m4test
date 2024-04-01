@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>20db3a05-030a-4002-8df3-0188ff228246</groupId>
+	<groupId>a3c72b73-766c-41f9-8bd8-75cbe8bce28e</groupId>
 	<artifactId>t2</artifactId>
-    <version>${UNISYS_BUILD}</version>
+    <version>1.0</version>
     <packaging>mule-application</packaging>
 
 	<name>t1</name>
@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.3.0</app.runtime>
+		<app.runtime>4.4.0</app.runtime>
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
 	<profiles>
@@ -27,7 +27,7 @@
        <repository>
             <id>Exchange3</id>
             <name>MuleSoft Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/a3c72b73-766c-41f9-8bd8-75cbe8bce28e/maven</url>
             <layout>default</layout>
         </repository>
       </distributionManagement>
@@ -48,7 +48,7 @@
 				<configuration>
 				   			     <cloudHubDeployment>
     			        <uri>https://anypoint.mulesoft.com</uri>
-   				         <muleVersion>4.3.0</muleVersion>
+   				         <muleVersion>4.4.0</muleVersion>
    				         <username>ausnsw10</username>
     			        <password>Ausnsw10</password>
     			        <applicationName>testvm2</applicationName>
@@ -65,7 +65,7 @@
        <repository>
             <id>Exchange3</id>
             <name>MuleSoft Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/a3c72b73-766c-41f9-8bd8-75cbe8bce28e/maven</url>
             <layout>default</layout>
         </repository>
       </distributionManagement>
@@ -122,7 +122,7 @@
         		<repository>
             <id>Exchange3</id>
             <name>MuleSoft Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/a3c72b73-766c-41f9-8bd8-75cbe8bce28e/maven</url>
             <layout>default</layout>
         </repository>
     </repositories>
@@ -130,7 +130,7 @@
     		<repository>
             <id>Exchange3</id>
             <name>MuleSoft Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/a3c72b73-766c-41f9-8bd8-75cbe8bce28e/maven</url>
             <layout>default</layout>
         </repository>
     </distributionManagement>
@@ -147,7 +147,7 @@
                  <pluginRepository>
             <id>Exchange3</id>
             <name>MuleSoft Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/20db3a05-030a-4002-8df3-0188ff228246/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/a3c72b73-766c-41f9-8bd8-75cbe8bce28e/maven</url>
                      <snapshots>
                 <enabled>false</enabled>
             </snapshots>
